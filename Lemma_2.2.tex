@@ -1,0 +1,53 @@
+\noindent\fbox{\begin{minipage}{\textwidth}
+\textbf{Lemma 2.2} $f(p,a)=\frac{a+1}{p^\frac{a}{3}}$, for $p<27 \mid p \in \mathbb{P}$, $f(p,a)$ - bounded.
+\end{minipage}}
+\\
+\\
+\textbf{Proof.}
+\\
+Graph for $p=2$:
+\begin{center}
+\begin{asy}
+import graph;
+size(12cm, 8cm, IgnoreAspect);
+
+// Define grid and axis ranges matching the image
+real xmin = -4, xmax = 35;
+real ymin = -6.5, ymax = 13.5;
+
+// Draw grid lines
+for (real x = -2; x <= 34; x += 2) {
+    draw((x, ymin)--(x, ymax), lightgray + 0.5bp);
+}
+for (real y = -6; y <= 12; y += 2) {
+    draw((xmin, y)--(xmax, y), lightgray + 0.5bp);
+}
+
+// Draw axes
+draw((xmin, 0)--(xmax, 0), black + 1bp);
+draw((0, ymin)--(0, ymax), black + 1bp);
+
+// Define the function f(x) = (x + 1) / (2^(x/3))
+real f(real x) {
+    return (x + 1) / (2^(x / 3));
+}
+
+// Graph the function in green
+path g = graph(f, -3.2, 35, n=400);
+draw(g, rgb("2d8a4e") + 1.5bp);
+
+// Add tick labels for x-axis
+for (real x = -2; x <= 34; x += 2) {
+    if (x != 0) {
+        label(scale(0.7) * string(int(x)), (x, 0), S, p=black);
+    }
+}
+
+// Add tick labels for y-axis
+for (real y = -6; y <= 12; y += 2) {
+    if (y != 0) {
+        label(scale(0.7) * string(int(y)), (0, y), W, p=black);
+    }
+}
+\end{asy}
+\end{center}

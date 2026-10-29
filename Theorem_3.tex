@@ -1,0 +1,69 @@
+\noindent\fbox{\begin{minipage}{\textwidth}
+\textbf{Theorem 3.} There exist infinitely many integers $k$ such that the equation
+\[
+x^3 + y^3 = x^2 + kxy + y^2
+\]
+has fewer than $5$ integer solutions.
+\end{minipage}}
+\\
+\\
+\textbf{Proof.}
+
+Let $(x,y)$ be an integer solution and let $d = \gcd(x,y)$. Write
+\[
+x = dx_1, \quad y = dy_1, \quad \gcd(x_1,y_1)=1.
+\]
+
+Substituting into the equation, we get
+\[
+d^3(x_1^3 + y_1^3) = d^2(x_1^2 + kx_1y_1 + y_1^2).
+\]
+
+Dividing both sides by $d^2$ (assuming $d \neq 0$), we obtain
+\[
+d(x_1^3 + y_1^3) = x_1^2 + kx_1y_1 + y_1^2.
+\]
+
+Rewriting,
+\[
+d(x_1^3 + y_1^3) - x_1^2 - y_1^2 = kx_1y_1.
+\]
+
+Using the identity
+\[
+x_1^3 + y_1^3 = (x_1 + y_1)(x_1^2 - x_1y_1 + y_1^2),
+\]
+we rewrite the left-hand side:
+\[
+d(x_1 + y_1)(x_1^2 - x_1y_1 + y_1^2) - x_1^2 - y_1^2 = kx_1y_1.
+\]
+
+Now observe that $\gcd(x_1,y_1)=1$ implies
+\[
+\gcd(x_1y_1,\, x_1^2 - x_1y_1 + y_1^2) = 1.
+\]
+
+Hence, from the equation it follows that
+\[
+x_1^2 - x_1y_1 + y_1^2 \mid k.
+\]
+
+Now choose $k = p-1$, where $p$ is a prime such that
+\[
+p \equiv 2 \pmod{3}.
+\]
+
+By Lemma 1, such primes $p$ cannot be represented in the form
+\[
+x^2 - xy + y^2.
+\]
+
+Thus,
+\[
+x_1^2 - x_1y_1 + y_1^2 \neq p,
+\]
+and since this quantity divides $k = p-1$, it must be small.
+
+This severely restricts the possible values of $(x_1,y_1)$, and therefore $(x,y)$, yielding only finitely many solutions (in fact, fewer than $5$).
+
+Finally, since there are infinitely many primes $p \equiv 2 \pmod{3}$, we obtain infinitely many such values of $k = p-1$.

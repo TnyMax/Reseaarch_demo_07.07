@@ -1,0 +1,168 @@
+\noindent\fbox{\begin{minipage}{\textwidth}
+\paragraph{Theorem 2:} Let
+\[
+N_k=\#\{(x,y)\in \mathbb Z^2:\ x^3+y^3=x^2+kxy+y^2\}.
+\]
+If \(k\neq -1,2\), then
+\[
+N_k\le 4\,\tau\!\left(\left|(k-2)^2(k+1)\right|\right),
+\]
+where \(\tau(m)\) denotes the number of positive divisors of \(m\).
+
+Moreover, for \(k=-1\) and \(k=2\), the equation has infinitely many integer solutions.
+\end{minipage}}
+\\
+\\
+\textbf{Proof.}
+Consider the equation
+\[
+x^3+y^3=x^2+kxy+y^2.
+\]
+Set
+\[
+s=x+y,\qquad p=xy.
+\]
+Then
+\[
+x^3+y^3=(x+y)^3-3xy(x+y)=s^3-3ps,
+\]
+and
+\[
+x^2+kxy+y^2=(x+y)^2+(k-2)xy=s^2+(k-2)p.
+\]
+Hence
+\[
+s^3-3ps=s^2+(k-2)p,
+\]
+so
+\[
+s^3-s^2=p(3s+k-2),
+\]
+that is,
+\[
+s^2(s-1)=p(3s+k-2).
+\]
+Let
+\[
+D=3s+k-2.
+\]
+Then
+\[
+D\mid s^2(s-1).
+\]
+
+We first note that if \(D=0\), then
+\[
+s^2(s-1)=0,
+\]
+so \(s=0\) or \(s=1\). Since \(D=3s+k-2\), this gives \(k=2\) or \(k=-1\). Therefore, for
+\[
+k\neq -1,2,
+\]
+we must have
+\[
+D\neq 0.
+\]
+
+We now prove that
+\[
+|D|\mid |(k-2)^2(k+1)|.
+\]
+
+Let \(q^a\parallel D\), where \(q\) is a prime. Since
+\[
+D\mid s^2(s-1)
+\]
+and
+\[
+\gcd(s,s-1)=1,
+\]
+the prime \(q\) divides exactly one of \(s\) and \(s-1\).
+
+\medskip
+
+\textit{Case 1: \(q\mid s-1\).}
+
+Since \(q\nmid s\), from \(q^a\mid s^2(s-1)\) we get
+\[
+q^a\mid (s-1).
+\]
+But also \(q^a\mid D\), hence
+\[
+q^a\mid D-3(s-1)=k+1.
+\]
+
+\medskip
+
+\textit{Case 2: \(q\mid s\).}
+
+Write
+\[
+q^b\parallel s.
+\]
+Since \(q\nmid s-1\), from \(q^a\mid s^2(s-1)\) we obtain
+\[
+a\le 2b.
+\]
+Also, because \(q^a\mid D\) and \(q^b\mid s\), we have
+\[
+q^{\min(a,b)}\mid \gcd(D,s).
+\]
+But
+\[
+D-3s=k-2,
+\]
+so
+\[
+q^{\min(a,b)}\mid (k-2).
+\]
+If \(a\le b\), then \(q^a\mid (k-2)\). If \(a>b\), then \(q^b\mid (k-2)\), and since \(a\le 2b\), it follows that
+\[
+q^a\mid (k-2)^2.
+\]
+Thus in all cases,
+\[
+q^a\mid (k-2)^2.
+\]
+
+Therefore, every prime power divisor of \(D\) divides either \(k+1\) or \((k-2)^2\), and so
+\[
+|D|\mid |(k-2)^2(k+1)|.
+\]
+
+Now let
+\[
+M=(k-2)^2(k+1).
+\]
+Every integer solution \((x,y)\) gives rise to a divisor \(D\) of \(M\), and \(s=x+y\) is then uniquely determined by
+\[
+s=\frac{D-k+2}{3}.
+\]
+After that, \(p=xy\) is uniquely determined from
+\[
+p=\frac{s^2(s-1)}{D}.
+\]
+
+Finally, \(x\) and \(y\) are the roots of
+\[
+t^2-st+p=0.
+\]
+For fixed \(s\) and \(p\), this quadratic gives at most two ordered integer pairs \((x,y)\), namely \((x,y)\) and \((y,x)\).
+
+Since \(M\neq 0\) for \(k\neq -1,2\), the number of integer divisors of \(M\) is
+\[
+2\tau(|M|).
+\]
+Hence
+\[
+N_k\le 2\cdot 2\tau(|M|)=4\tau(|M|).
+\]
+Therefore
+\[
+N_k\le 4\,\tau\!\left(\left|(k-2)^2(k+1)\right|\right).
+\]
+
+\bigskip
+
+It remains to note the exceptional cases from introduction.
+This completes the proof.

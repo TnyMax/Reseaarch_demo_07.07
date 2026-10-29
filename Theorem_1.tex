@@ -1,0 +1,103 @@
+\noindent\fbox{\begin{minipage}{\textwidth}
+\paragraph{Theorem 1: (Almaty Math Battles 2026)} For every positive integers $n,l$, there is exist $k>l$, such that $$x^3+y^3=x^2+kxy+y^2$$ has more than $n$ solutions in $\mathbb{Z}$.
+\end{minipage}}
+\\
+\\
+\textbf{Proof.}
+We look for solutions of the form
+\[
+y=mx
+\]
+for some positive integer \(m\). Substituting into
+\[
+x^3+y^3=x^2+kxy+y^2
+\]
+gives
+\[
+x^3+(mx)^3=x^2+kx(mx)+(mx)^2,
+\]
+hence
+\[
+x^3(1+m^3)=x^2(1+km+m^2).
+\]
+Therefore, if
+\[
+1+m^3 \mid 1+km+m^2,
+\]
+then
+\[
+x=\frac{1+km+m^2}{1+m^3},\qquad y=mx
+\]
+is an integer solution.
+
+So for each chosen \(m\), it is enough to require
+\[
+1+km+m^2\equiv 0 \pmod{1+m^3}.
+\]
+A sufficient condition is
+\[
+k\equiv m(m-1)\pmod{1+m^3},
+\]
+because then
+\[
+1+km+m^2 \equiv 1+m^2(m-1)+m^2 = 1+m^3 \equiv 0 \pmod{1+m^3}.
+\]
+
+Now choose
+\[
+m_i=2^{2^i}\qquad (i=1,2,\dots,n+1),
+\]
+and let
+\[
+q_i=1+m_i^3=1+2^{3\cdot 2^i}.
+\]
+
+We claim that the integers \(q_1,q_2,\dots,q_{n+1}\) are pairwise coprime.  
+Indeed, suppose \(i<j\) and some integer \(d>1\) divides both \(q_i\) and \(q_j\). Then
+\[
+2^{3\cdot 2^i}\equiv -1 \pmod d.
+\]
+Raising both sides to the power \(2^{j-i}\), we obtain
+\[
+2^{3\cdot 2^j}\equiv (-1)^{2^{j-i}}=1 \pmod d.
+\]
+On the other hand, since \(d\mid q_j\), we also have
+\[
+2^{3\cdot 2^j}\equiv -1 \pmod d.
+\]
+This is impossible. Hence
+\[
+\gcd(q_i,q_j)=1 \qquad \text{for all } i\ne j.
+\]
+
+Therefore, by the Chinese Remainder Theorem, there exists an integer \(k\) such that
+\[
+k\equiv m_i(m_i-1)\pmod{q_i}
+\qquad (i=1,2,\dots,n+1).
+\]
+Moreover, all such integers form an arithmetic progression, so we may choose one with
+\[
+k>l.
+\]
+
+For each \(i\), define
+\[
+x_i=\frac{1+km_i+m_i^2}{1+m_i^3},\qquad y_i=m_i x_i.
+\]
+By construction, \(x_i\in\mathbb Z\), hence \((x_i,y_i)\in\mathbb Z^2\). Also,
+\[
+x_i^3+y_i^3=x_i^3(1+m_i^3)
+= x_i^2(1+km_i+m_i^2)
+= x_i^2+kx_i y_i+y_i^2,
+\]
+so \((x_i,y_i)\) is a solution of the equation.
+
+These solutions are distinct, since
+\[
+\frac{y_i}{x_i}=m_i
+\]
+and the numbers \(m_1,m_2,\dots,m_{n+1}\) are pairwise distinct.
+
+Thus the equation has at least \(n+1\) distinct integer solutions. In particular, it has more than \(n\) solutions in \(\mathbb Z\).
+
+This proves the Theorem 1.
