@@ -1,53 +1,52 @@
-\noindent\fbox{\begin{minipage}{\textwidth}
-\textbf{Lemma 2.2} $f(p,a)=\frac{a+1}{p^\frac{a}{3}}$, for $p<27 \mid p \in \mathbb{P}$, $f(p,a)$ - bounded.
-\end{minipage}}
-\\
-\\
-\textbf{Proof.}
-\\
-Graph for $p=2$:
-\begin{center}
+\begin{thmbox}
+\textbf{Lemma 2.2.} For every prime $p$ the function $a\mapsto f(p,a)=\dfrac{a+1}{p^{a/3}}$ is bounded on the non-negative integers. In particular, $C_p:=\sup_{a\ge 0}f(p,a)$ is finite, and $C_p\ge f(p,0)=1$.
+\end{thmbox}
+
+\begin{proof}
+For every $a\ge 0$,
+\[
+\frac{f(p,a+1)}{f(p,a)}=\frac{a+2}{(a+1)\,p^{1/3}}=\frac{1+\frac{1}{a+1}}{p^{1/3}} .
+\]
+Since $p^{1/3}>1$, there is an $a_0$ such that $1+\frac{1}{a_0+1}<p^{1/3}$, and then the ratio is less than $1$ for all $a\ge a_0$. Hence $f(p,\cdot)$ is decreasing from $a_0$ onwards, and
+\[
+\sup_{a\ge 0}f(p,a)=\max_{0\le a\le a_0}f(p,a)<\infty. \qedhere
+\]
+\end{proof}
+
+\noindent\textit{Remark.} For the primes $p<27$ the maxima can be found directly:
+$C_2=f(2,3)=2$, $C_3=f(3,2)\approx 1.442$, $C_5=f(5,1)\approx 1.170$, $C_7=f(7,1)\approx 1.046$, and $C_p=1$ for $p=11,13,17,19,23$. Figure~\ref{fig:f2} illustrates the case $p=2$.
+
+\begin{figure}[H]
+\centering
 \begin{asy}
-import graph;
-size(12cm, 8cm, IgnoreAspect);
+ /* Geogebra to Asymptote conversion, documentation at artofproblemsolving.com/Wiki go to User:Azjps/geogebra */
+import graph; size(8cm); 
+real labelscalefactor = 0.5; /* changes label-to-point distance */
+pen dps = linewidth(0.7) + fontsize(10); defaultpen(dps); /* default pen style */ 
+pen dotstyle = black; /* point style */ 
+real xmin = -1.9983547064324931, xmax = 13.87263156886547, ymin = -2.6016110434584268, ymax = 5.819728612822138;  /* image dimensions */
+pen bubtba = rgb(0.7058823529411765,0.7019607843137254,0.7294117647058823); pen rcrcrf = rgb(0.10980392156862745,0.10980392156862745,0.12156862745098039); 
+ /* draw grid of horizontal/vertical lines */
+pen gridstyle = linewidth(0.7) + bubtba; real gridx = 1, gridy = 1; /* grid intervals */
+for(real i = ceil(xmin/gridx)*gridx; i <= floor(xmax/gridx)*gridx; i += gridx)
+ draw((i,ymin)--(i,ymax), gridstyle);
+for(real i = ceil(ymin/gridy)*gridy; i <= floor(ymax/gridy)*gridy; i += gridy)
+ draw((xmin,i)--(xmax,i), gridstyle);
+ /* end grid */ 
 
-// Define grid and axis ranges matching the image
-real xmin = -4, xmax = 35;
-real ymin = -6.5, ymax = 13.5;
-
-// Draw grid lines
-for (real x = -2; x <= 34; x += 2) {
-    draw((x, ymin)--(x, ymax), lightgray + 0.5bp);
-}
-for (real y = -6; y <= 12; y += 2) {
-    draw((xmin, y)--(xmax, y), lightgray + 0.5bp);
-}
-
-// Draw axes
-draw((xmin, 0)--(xmax, 0), black + 1bp);
-draw((0, ymin)--(0, ymax), black + 1bp);
-
-// Define the function f(x) = (x + 1) / (2^(x/3))
-real f(real x) {
-    return (x + 1) / (2^(x / 3));
-}
-
-// Graph the function in green
-path g = graph(f, -3.2, 35, n=400);
-draw(g, rgb("2d8a4e") + 1.5bp);
-
-// Add tick labels for x-axis
-for (real x = -2; x <= 34; x += 2) {
-    if (x != 0) {
-        label(scale(0.7) * string(int(x)), (x, 0), S, p=black);
-    }
-}
-
-// Add tick labels for y-axis
-for (real y = -6; y <= 12; y += 2) {
-    if (y != 0) {
-        label(scale(0.7) * string(int(y)), (0, y), W, p=black);
-    }
-}
+Label laxis; laxis.p = fontsize(10); 
+xaxis(xmin, xmax,defaultpen+rcrcrf, Ticks(laxis, Step = 1, Size = 2, NoZero),EndArrow(6), above = true); 
+yaxis(ymin, ymax,defaultpen+rcrcrf, Ticks(laxis, Step = 1, Size = 2, NoZero),EndArrow(6), above = true); /* draws axes; NoZero hides '0' label */ 
+ /* draw figures */
+real f1 (real x) {return (x+1)/2^(x/3);} 
+draw(graph(f1,-1.9883547064324931,13.86263156886547), linewidth(2)); 
+ /* dots and labels */
+dot((3.3280851607384956,2.00606335027303),linewidth(4pt) + dotstyle); 
+label("$A$", (3.3675501771206284,2.094905303313427), NE * labelscalefactor); 
+clip((xmin,ymin)--(xmin,ymax)--(xmax,ymax)--(xmax,ymin)--cycle); 
+ /* end of picture */
 \end{asy}
-\end{center}
+\caption{The graph of $x\mapsto (x+1)/2^{x/3}$, i.e.\ of $f(2,x)$; among the integers its maximum is $f(2,3)=2$.}
+\label{fig:f2}
+\end{figure}
+
