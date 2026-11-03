@@ -1,35 +1,29 @@
-\documentclass[a4paper,14pt]{extarticle}  % extarticle поддерживает 14pt
+\documentclass[a4paper,14pt]{extarticle}  % extarticle supports 14pt
 
-% Кодировка и язык
-\usepackage[utf8]{inputenc}   
-\usepackage[T1]{fontenc}      
-\usepackage[russian]{babel}   
-\usepackage[colorlinks=true, urlcolor=blue]{hyperref}
-% Шрифты
-\usepackage{titlesec}
-\usepackage{xcolor}
+% Encoding and language
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
 
-\usepackage{titlesec}
+% Fonts and headings
 \usepackage{xcolor}
+\usepackage{titlesec}
 \titleformat{\section}
   {\bfseries\color{black}\LARGE}{\thesection}{1em}{}
-
 \titleformat{\subsection}
   {\bfseries\color{black}\Large}{\thesubsection}{1em}{}
-\usepackage{mathptmx}         
+\usepackage{mathptmx}
 
-% Поля, таблицы, картинки
+% Page, tables, figures, maths
 \usepackage{asymptote}
 \usepackage{float}
-\usepackage{geometry}         
-\usepackage{graphicx}         
-\usepackage{array}            
-\usepackage{booktabs}         
-\usepackage{caption}          
-\usepackage{amsmath,amssymb}  
-\setcounter{secnumdepth}{0}
-% Настройки полей страницы 
 \usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{amsmath,amssymb,amsthm}
+\setcounter{secnumdepth}{0}
 \geometry{
   top=2cm,
   bottom=2cm,
@@ -37,14 +31,25 @@
   right=2cm
 }
 
-% Абзацные отступы и межстрочный интервал
+% Paragraph indentation and line spacing
 \setlength{\parindent}{1.25cm}
 \renewcommand{\baselinestretch}{1.5}
+\emergencystretch=2em % reduces overfull lines
 
-% Заголовок
-\title{Solutions of Diophantine Equation. $x^3+y^3=x^2+kxy+y^2$}
-\author{Maxud Eric }
-\date{} % можно поставить дату или оставить пустой
+% Boxed statements of theorems and lemmas (exactly as wide as the text)
+\newsavebox{\thmboxbin}
+\newenvironment{thmbox}
+  {\par\medskip\noindent\begin{lrbox}{\thmboxbin}%
+   \begin{minipage}{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}}
+  {\end{minipage}\end{lrbox}\fbox{\usebox{\thmboxbin}}\par\medskip}
+
+% hyperref should be loaded last
+\usepackage[colorlinks=true, urlcolor=blue, linkcolor=black, citecolor=black]{hyperref}
+
+% Title
+\title{Integer Solutions of the Diophantine Equation $x^3+y^3=x^2+kxy+y^2$}
+\author{Maxud Eric}
+\date{} % leave empty or put a date
 
 \begin{document}
 \maketitle
@@ -54,8 +59,8 @@
 \section{Introduction}
 \input{Introduction}
 
-\section{Theorems and their proofs.}
-Despite the small number of solutions for small cases, an equation of this type has quite a lot of solutions.
+\section{Theorems and Proofs}
+For small $|k|$ the equation has only a few integer solutions (see the Introduction), yet Theorem~1 shows that the number of solutions is unbounded as $k$ varies.
 
 \input{Theorem_1}
 
@@ -65,7 +70,8 @@ Despite the small number of solutions for small cases, an equation of this type 
 
 \input{Theorem_3}
 
-\begin{center}
+\begin{figure}[H]
+\centering
 \begin{asy}
 // ------------------------------------------------------------
 // Number of integer solutions of  x^3 + y^3 = x^2 + k*x*y + y^2
@@ -123,30 +129,26 @@ label("Integer solutions of $x^3+y^3 = x^2+kxy+y^2$ for $-50 \le k \le 50$",
       (0, ymax+1.8), p=fontsize(12pt));
 
 \end{asy}
-\end{center}
-From Theorem 2, we know that $N_k$ rise at maximum as a $\mathcal{O}(k^3)$, however according behavior of small cases, we can formulate next conjecture:
-\\
-\\
+\caption{The number $N_k$ of integer solutions for $-50\le k\le 50$. The red bars mark $k=-1$ and $k=2$, where $N_k=\infty$; the dashed line is the baseline $N_k\ge 3$ given by the trivial solutions.}
+\label{fig:counts}
+\end{figure}
+
+Figure~\ref{fig:counts} shows $N_k$ for $-50\le k\le 50$. For $k\ne -1,2$ in this range we have $3\le N_k\le 12$, and $N_k\in\{3,4\}$ for $66$ of the $99$ values of $k$. The trivial estimate $\tau(m)\le 2\sqrt m$ turns Theorem~2 into $N_k=O\!\left(|k|^{3/2}\right)$, which is much weaker than what the data suggest. A finer estimate of the divisor function gives a linear bound; the proof uses two small lemmas.
+
+\input{Lemma_2_1}
+
+\input{Lemma_2_2}
+
 \input{Theorem_4}
-\input{Lemma_2.1}
-\\
-\\
-\input{Lemma_2.2}
+
 \section{Conclusion}
-For equations of this form, it seems difficult to obtain a complete general description of all integer solutions. Nevertheless, the results proved above show that for every \(k\neq -1,2\), the equation has only finitely many integer solutions, while for the exceptional values \(k=-1\) and \(k=2\), the set of integer solutions is infinite. Moreover, Theorem 3 shows that for infinitely many integers \(k\), the equation has exactly four integer solutions.
-%I have to add information about bounding and approximate $O(n)$
+For equations of this form, it seems difficult to obtain a complete general description of all integer solutions. Nevertheless, the results proved above show that for every \(k\neq -1,2\), the equation has only finitely many integer solutions, while for the exceptional values \(k=-1\) and \(k=2\), the set of integer solutions is infinite. Moreover, the number of solutions is unbounded as \(k\) varies (Theorem~1), but it grows at most linearly in \(|k|\) (Theorem~4), and Theorem~3 shows that for infinitely many integers \(k\) the equation has exactly four integer solutions.
+
 \newpage
-\section{References}
-
-\begin{enumerate}
-    \item \href{https://bibnum.publimath.fr/ACF/ACF19075.pdf}{EQUATIONS IN CHINA: TWO MILLENNIA OF INNOVATION, 
-    \\ 
-    TRANSMISSION AND RE-TRANSMISSION} Man-Keung
-    \item \href{https://artofproblemsolving.com/community/c6h1441692p8209533}{Inspiration (BMO 2017/1)}
-    \item \href{https://www.awesomemath.org/wp-pdf-files/math-reflections/mr-2025-03/mr_3_2025_on_prime_numbers_of_the_form.pdf}{On Prime Numbers of the Form $a^2 + ab + b^2$
-Where $a \in \mathbb{N^{+}}$, $b \in \mathbb{N^{+}}$ }
-    Arno Mikaelyan, Nairi Sedrakyan, Hayk Sedrakyan
-\end{enumerate}
+\begin{thebibliography}{9}
+\bibitem{siu} \href{https://bibnum.publimath.fr/ACF/ACF19075.pdf}{Equations in China: Two Millennia of Innovation, Transmission and Re-transmission}, Man-Keung.
+\bibitem{bmo} \href{https://artofproblemsolving.com/community/c6h1441692p8209533}{Balkan Mathematical Olympiad 2017, Problem 1} (Art of Problem Solving thread).
+\bibitem{prime} \href{https://www.awesomemath.org/wp-pdf-files/math-reflections/mr-2025-03/mr_3_2025_on_prime_numbers_of_the_form.pdf}{On Prime Numbers of the Form $a^2 + ab + b^2$ Where $a \in \mathbb{N}^{+}$, $b \in \mathbb{N}^{+}$}, Arno Mikaelyan, Nairi Sedrakyan, Hayk Sedrakyan, Mathematical Reflections, 2025, no.~3.
+\bibitem{tau} \href{https://www.renyi.hu/~gharcos/wigert4.pdf}{ON THE HYBRID MOMENTS OF THE GENERALIZED DIVISOR FUNCTION}, Gergely Harcos
+\end{thebibliography}
 \end{document}
-
-\end{center}
