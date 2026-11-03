@@ -1,69 +1,51 @@
-\noindent\fbox{\begin{minipage}{\textwidth}
-\textbf{Theorem 3.} There exist infinitely many integers $k$ such that the equation
+\begin{thmbox}
+\textbf{Theorem 3.} There exist infinitely many integers $k$ for which the equation
 \[
 x^3 + y^3 = x^2 + kxy + y^2
 \]
-has fewer than $5$ integer solutions.
-\end{minipage}}
-\\
-\\
-\textbf{Proof.}
+has exactly four integer solutions (in particular, fewer than $5$). More precisely, if $p\neq 2$ is a prime with $p\equiv 2 \pmod 3$ and $k=p-1$, then the integer solutions are exactly
+\[
+(0,0),\quad (1,0),\quad (0,1),\quad \left(\tfrac{p+1}{2},\tfrac{p+1}{2}\right).
+\]
+\end{thmbox}
 
-Let $(x,y)$ be an integer solution and let $d = \gcd(x,y)$. Write
+\begin{proof}
+Let $p\ne 2$ be a prime with $p\equiv 2\pmod 3$ and let $k=p-1$. Note that $p$ is odd, so $t=\frac{p+1}{2}=\frac{k+2}{2}$ is an integer. The pairs $(0,0)$, $(1,0)$, $(0,1)$ are solutions for every $k$, and $(t,t)$ is a solution because $2t^3=(k+2)t^2$. These four pairs are distinct.
+
+Conversely, let $(x,y)\ne(0,0)$ be an integer solution and let $d=\gcd(x,y)>0$. Write
 \[
 x = dx_1, \quad y = dy_1, \quad \gcd(x_1,y_1)=1.
 \]
-
-Substituting into the equation, we get
-\[
-d^3(x_1^3 + y_1^3) = d^2(x_1^2 + kx_1y_1 + y_1^2).
-\]
-
-Dividing both sides by $d^2$ (assuming $d \neq 0$), we obtain
+Substituting into the equation and dividing by $d^2$, we get
 \[
 d(x_1^3 + y_1^3) = x_1^2 + kx_1y_1 + y_1^2.
 \]
-
-Rewriting,
+Put $Q=x_1^2-x_1y_1+y_1^2>0$. Then $x_1^3+y_1^3=(x_1+y_1)Q$ and $x_1^2+kx_1y_1+y_1^2=Q+(k+1)x_1y_1$, so
+\begin{equation}\label{eq:thm3}
+d(x_1+y_1)Q = Q+(k+1)x_1y_1 .
+\end{equation}
+Hence $Q\mid (k+1)x_1y_1$. Now $\gcd(Q,x_1y_1)=1$: a prime dividing $x_1$ and $Q$ would divide $Q-x_1(x_1-y_1)=y_1^2$, hence $y_1$, contradicting $\gcd(x_1,y_1)=1$; the case of a prime dividing $y_1$ and $Q$ is symmetric. Therefore
 \[
-d(x_1^3 + y_1^3) - x_1^2 - y_1^2 = kx_1y_1.
+Q\mid k+1=p,
 \]
+so $Q\in\{1,p\}$. By Lemma~1, the prime $p\equiv 2\pmod 3$ is not of the form $x^2-xy+y^2$, hence $Q\neq p$ and so $Q=1$.
 
-Using the identity
+The equation $x_1^2-x_1y_1+y_1^2=1$ is equivalent to $(2x_1-y_1)^2+3y_1^2=4$, so $y_1\in\{-1,0,1\}$, and we find exactly six pairs:
 \[
-x_1^3 + y_1^3 = (x_1 + y_1)(x_1^2 - x_1y_1 + y_1^2),
+(x_1,y_1)\in\{(1,0),(-1,0),(0,1),(0,-1),(1,1),(-1,-1)\}.
 \]
-we rewrite the left-hand side:
+With $Q=1$ and $k+1=p$, equation~\eqref{eq:thm3} reads
 \[
-d(x_1 + y_1)(x_1^2 - x_1y_1 + y_1^2) - x_1^2 - y_1^2 = kx_1y_1.
+d(x_1+y_1)=1+p\,x_1y_1 .
 \]
+Recall $d>0$.
+\begin{itemize}
+    \item $(x_1,y_1)=(1,0)$: $d=1$, giving $(x,y)=(1,0)$.
+    \item $(x_1,y_1)=(0,1)$: $d=1$, giving $(x,y)=(0,1)$.
+    \item $(x_1,y_1)=(1,1)$: $2d=1+p$, giving $(x,y)=\left(\frac{p+1}{2},\frac{p+1}{2}\right)$.
+    \item $(x_1,y_1)\in\{(-1,0),(0,-1),(-1,-1)\}$: the left-hand side is $-d$ or $-2d$ while the right-hand side is $1$ or $1+p$, both positive; this is impossible for $d>0$.
+\end{itemize}
+Together with $(0,0)$, these are exactly the four solutions listed.
 
-Now observe that $\gcd(x_1,y_1)=1$ implies
-\[
-\gcd(x_1y_1,\, x_1^2 - x_1y_1 + y_1^2) = 1.
-\]
-
-Hence, from the equation it follows that
-\[
-x_1^2 - x_1y_1 + y_1^2 \mid k.
-\]
-
-Now choose $k = p-1$, where $p$ is a prime such that
-\[
-p \equiv 2 \pmod{3}.
-\]
-
-By Lemma 1, such primes $p$ cannot be represented in the form
-\[
-x^2 - xy + y^2.
-\]
-
-Thus,
-\[
-x_1^2 - x_1y_1 + y_1^2 \neq p,
-\]
-and since this quantity divides $k = p-1$, it must be small.
-
-This severely restricts the possible values of $(x_1,y_1)$, and therefore $(x,y)$, yielding only finitely many solutions (in fact, fewer than $5$).
-
-Finally, since there are infinitely many primes $p \equiv 2 \pmod{3}$, we obtain infinitely many such values of $k = p-1$.
+Finally, there are infinitely many primes $p\equiv 2\pmod 3$ (a special case of Dirichlet's theorem; an elementary argument: if $p_1,\dots,p_r$ were all of them, then $3p_1\cdots p_r-1\equiv 2\pmod 3$ is coprime to $3$ and to every $p_i$, and not all of its prime factors can be $\equiv 1\pmod 3$, a contradiction). Hence we obtain infinitely many values $k=p-1$ with exactly four integer solutions.
+\end{proof}
