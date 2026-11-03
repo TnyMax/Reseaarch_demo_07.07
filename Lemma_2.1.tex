@@ -1,8 +1,13 @@
-\noindent\fbox{\begin{minipage}{\textwidth}
-\textbf{Lemma 2.1} $f(p,a)=\frac{a+1}{p^\frac{a}{3}}$, for $p>27$, $f(p,a) \le 1$
-\end{minipage}}
-\\
-\\
-\textbf{Proof.}
-\\
-$a \ge 27$, so $f(p,a) \le \frac{a+1}{3^a} \le 1$ That is all.
+\begin{thmbox}
+\textbf{Lemma 2.1.} For a prime $p$ and an integer $a\ge 0$ put
+\[
+f(p,a)=\frac{a+1}{p^{a/3}}.
+\]
+If $p>27$, then $f(p,a)\le 1$ for all $a\ge 0$.
+\end{thmbox}
+
+\begin{proof}
+Since $p>27$, we have $p^{1/3}>3$, so $p^{a/3}\ge 3^a$. By Bernoulli's inequality, $3^a=(1+2)^a\ge 1+2a\ge a+1$. Hence $f(p,a)\le \dfrac{a+1}{3^a}\le 1$.
+\end{proof}
+
+\noindent\textit{Remark.} The same argument works for every prime $p\ge 8$ (use $p^{1/3}\ge 2$ and $2^a\ge a+1$), so in fact only the primes $2,3,5,7$ can give $f(p,a)>1$. The threshold $27$ is kept for simplicity.
