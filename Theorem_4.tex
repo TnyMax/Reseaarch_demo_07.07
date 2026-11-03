@@ -1,7 +1,26 @@
-\noindent\fbox{\begin{minipage}{\textwidth}
-\paragraph{Theorem 4.}$\exists c \in \mathbb{N}$ such that for $\forall  k \in \mathbb{Z}$, $|k| > N$, $x^3+y^3 = x^2 +kxy  + y^2$, has not greater than $|kc|$ solutions.
-\end{minipage}}
-\\
-\\
-\textbf{Proof.}
-\\
+\begin{thmbox}
+\textbf{Theorem 4.} There exists an integer constant $c$ such that for every integer $k$ with $|k|\ge 3$ the equation
+\[
+x^3+y^3=x^2+kxy+y^2
+\]
+has at most $c\,|k|$ integer solutions, i.e.\ $N_k\le c\,|k|$.
+\end{thmbox}
+
+\begin{proof}
+Let $|k|\ge 3$; in particular $k\neq -1,2$. Put $M=\left|(k-2)^2(k+1)\right|\ge 1$ and write $M=\prod_i p_i^{a_i}$ with distinct primes $p_i$. Then $\tau(M)=\prod_i(a_i+1)$ and $M^{1/3}=\prod_i p_i^{a_i/3}$, so
+\[
+\frac{\tau(M)}{M^{1/3}}=\prod_i f(p_i,a_i).
+\]
+By Lemma~2.1 every factor with $p_i>27$ is at most $1$, and by Lemma~2.2 every factor with $p_i<27$ is at most $C_{p_i}$. Since all $C_p\ge 1$, we get
+\[
+\tau(M)\le C\,M^{1/3},\qquad C:=\prod_{p<27}C_p .
+\]
+For $|k|\ge 3$ we have $|k-2|\le \frac53|k|$ and $|k+1|\le\frac43|k|$, hence $M\le \frac{100}{27}|k|^3$ and $M^{1/3}\le \left(\frac{100}{27}\right)^{1/3}|k|$. By Theorem~2,
+\[
+N_k\le 4\tau(M)\le 4C\left(\tfrac{100}{27}\right)^{1/3}|k| .
+\]
+Thus the theorem holds with any integer $c\ge 4C\left(\frac{100}{27}\right)^{1/3}$.
+\end{proof}
+
+\noindent\textit{Remarks.} (1) By the explicit values above, $C\approx 3.53$, so $c=22$ works.
+(2) Replacing the exponent $\frac13$ by an arbitrary $\varepsilon>0$ in the definition of $f$, the same argument gives $N_k=O_\varepsilon\!\left(|k|^{\varepsilon}\right)$ for every $\varepsilon>0$. So Theorem~4 is far from sharp as an upper bound (for example we can use Wigert's works to obtain better upper bound); by Theorem~1, however, $N_k$ is unbounded. 
